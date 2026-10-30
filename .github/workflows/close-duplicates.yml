@@ -9,7 +9,7 @@ permissions: {}
 
 jobs:
   should_run:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     outputs:
       should_run: ${{ steps.should_run.outputs.run }}
     steps:
@@ -17,7 +17,7 @@ jobs:
         run: echo "run=${{ github.event_name == 'issues' || github.event.discussion.category.name == 'Feature Request' }}" >> $GITHUB_OUTPUT
 
   get_body:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     needs: should_run
     if: ${{ needs.should_run.outputs.should_run == 'true' }}
     env:
@@ -31,7 +31,7 @@ jobs:
           echo "body=$BODY" >> $GITHUB_OUTPUT
 
   get_checkbox_json:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     needs: [get_body, should_run]
     if: ${{ needs.should_run.outputs.should_run == 'true' }}
     container:
@@ -47,7 +47,7 @@ jobs:
           echo "checked=$CHECKED" >> $GITHUB_OUTPUT
 
   close_and_comment:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     needs: [get_checkbox_json, should_run]
     if: ${{ needs.should_run.outputs.should_run == 'true' && needs.get_checkbox_json.outputs.checked != 'true' }}
     permissions:
