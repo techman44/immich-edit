@@ -8,7 +8,7 @@ permissions: {}
 
 jobs:
   validate-release-label:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       issues: write
       pull-requests: write
