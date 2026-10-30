@@ -10,7 +10,7 @@ concurrency:
 permissions: {}
 jobs:
   pre-job:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     outputs:
@@ -55,7 +55,7 @@ jobs:
     name: Test & Lint Server
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).server == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -100,7 +100,7 @@ jobs:
     name: Unit Test CLI
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).cli == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -233,7 +233,7 @@ jobs:
     name: Test Web
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).web == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -274,7 +274,7 @@ jobs:
     name: Test i18n
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).i18n == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     steps:
@@ -319,7 +319,7 @@ jobs:
     name: End-to-End Lint
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).e2e == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -365,7 +365,7 @@ jobs:
     name: Medium Tests (Server)
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).server == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -514,7 +514,7 @@ jobs:
     name: End-to-End Tests Success
     needs: [e2e-tests-server-cli, e2e-tests-web]
     permissions: {}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     if: always()
     steps:
       - uses: immich-app/devtools/actions/success-check@68f10eb389bb02a3cf9d1156111964c549eb421b # 0.0.4
@@ -524,7 +524,7 @@ jobs:
     name: Unit Test Mobile
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).mobile == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     steps:
@@ -553,7 +553,7 @@ jobs:
     name: Unit Test ML
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run).machine-learning == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -596,7 +596,7 @@ jobs:
     name: .github Files Formatting
     needs: pre-job
     if: ${{ fromJSON(needs.pre-job.outputs.should_run)['.github'] == true }}
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
@@ -629,7 +629,7 @@ jobs:
         if: ${{ !cancelled() }}
   shellcheck:
     name: ShellCheck
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     steps:
@@ -650,7 +650,7 @@ jobs:
             **/open-api/** **/openapi** **/node_modules/**
   generated-api-up-to-date:
     name: OpenAPI Clients
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     steps:
@@ -698,7 +698,7 @@ jobs:
           exit 1
   sql-schema-up-to-date:
     name: SQL Schema Checks
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     services:
