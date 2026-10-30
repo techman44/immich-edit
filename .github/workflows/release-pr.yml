@@ -13,7 +13,7 @@ permissions: {}
 
 jobs:
   bump:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     steps:
       - name: Generate a token
         id: generate-token
