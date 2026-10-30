@@ -11,7 +11,7 @@ env:
 jobs:
   checks:
     name: Docs Deploy Checks
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       actions: read
       pull-requests: read
@@ -110,7 +110,7 @@ jobs:
 
   deploy:
     name: Docs Deploy
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     needs: checks
     permissions:
       contents: read
