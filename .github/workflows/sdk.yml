@@ -9,7 +9,7 @@ permissions: {}
 jobs:
   publish:
     name: Publish `@immich/sdk`
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
     defaults:
