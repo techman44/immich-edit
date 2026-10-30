@@ -13,7 +13,7 @@ permissions: {}
 jobs:
   cleanup:
     name: Cleanup
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64, pips-lxc]
     permissions:
       contents: read
       actions: write
